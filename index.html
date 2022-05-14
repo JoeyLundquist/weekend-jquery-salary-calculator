@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./jqueryUC-3.6.0.js"></script>
+    <script src="./script.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -12,17 +14,17 @@
     </header>
     <div class="inputFields">
         <h2>Add Employee</h2>
-        <input type="text" placeholder="First Name">
-        <input type="text" placeholder="Last Name">
-        <input type="number" placeholder="ID">
-        <input type="text" placeholder="Job Title">
-        <input type="number" placeholder="Annual Salary">
-        <button>Submit</button>
+        <input id="employeeFirstName" type="text" placeholder="First Name">
+        <input id="employeeLastName" type="text" placeholder="Last Name">
+        <input id="employeeIdNumber" type="number" placeholder="ID">
+        <input id="employeeJobTitle" type="text" placeholder="Job Title">
+        <input id="employeeAnnualSalary" type="number" placeholder="Annual Salary">
+        <button id="submitEmployeeInfoToTable">Submit</button>
     </div>
 
     <h3>Employees</h3>
     <div class="employeeTable">
-        <table>
+        <table id="employeeMonthlyCostTable">
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
@@ -38,14 +40,14 @@
                 <td>Self Employed</td>
                 <td>$300</td>
                 <td>
-                    <button>Delete</button>
+                    <button class="deleteEmployeeFromTable">Delete</button>
                 </td>
             </tr>
         </table>
     </div>
     
     <div class="monthlyCostOutput">
-        <h3>Total Monthly: $25.00</h3>
+        <h3>Total Monthly: $<span id="employeeMonthlyCostOutput">25.01</span></h3>
     </div>
 </body>
 </html>
