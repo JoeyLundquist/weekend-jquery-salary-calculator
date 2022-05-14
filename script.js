@@ -42,7 +42,11 @@ function onSubmit () {
     $('#employeeIdNumber').val('');
     $('#employeeJobTitle').val('');
     $('#employeeAnnualSalary').val('');
+    //Display employee info to DOM
     displayOnEmployeeTable();
+    // Calculate monthly cost
+    calculateMonthlyCost();
+    //Display monthly cost
 }
 
 function displayOnEmployeeTable() {
@@ -62,4 +66,17 @@ function displayOnEmployeeTable() {
                     <button class="deleteEmployeeFromTable">Delete</button>
                 </td>`)
     }
+}
+
+function calculateMonthlyCost() {
+    // creating variable for monthly cost
+    let monthlyCost = 0;
+    
+    // Loop through employeeObjectArray to grab annual Salaries
+    for(let annualSalary of employeeObjectArray) {
+        // creating a variable for my to calc monthly cost
+        let annualToMonthly = annualSalary.annualSalary / 12;
+        monthlyCost += annualToMonthly;
+    }
+    console.log(monthlyCost);
 }
