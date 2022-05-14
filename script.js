@@ -6,37 +6,37 @@ function readyNow() {
     displayOnEmployeeTable();
     calculateMonthlyCost();
 }
-
+//baseline array for testing
 const employeeObjectArray = [
     {
-    firstName: "Joey",
-    lastName: 'Lundquist',
-    idNumber: 'id',
-    jobTitle: 'jobTitle',
-    annualSalary: 12000
+        firstName: "Medea",
+        lastName: 'Aigle',
+        idNumber: '123',
+        jobTitle: 'Window Cleaner',
+        annualSalary: '12000'
     },
     {
-    firstName: "Cara",
-    lastName: 'Lundquist',
-    idNumber: 'id',
-    jobTitle: 'jobTitle',
-    annualSalary: 60000
+        firstName: "Althea",
+        lastName: 'Pyrrhus',
+        idNumber: '456',
+        jobTitle: 'Sales Associate',
+        annualSalary: '35000'
     },
     {
-    firstName: "Cody",
-    lastName: 'Oakland',
-    idNumber: 'id',
-    jobTitle: 'jobTitle',
-    annualSalary: 80000
+        firstName: "Brontes",
+        lastName: 'Orestes',
+        idNumber: '789',
+        jobTitle: 'General Manager',
+        annualSalary: '56000'
     },
     {
-        firstName: "Mike",
-        lastName: 'Lundquist',
-        idNumber: 'id',
-        jobTitle: 'jobTitle',
-        annualSalary: 85000
+        firstName: "Anthea",
+        lastName: 'Selena',
+        idNumber: '1011',
+        jobTitle: 'CFO',
+        annualSalary: '85000'
     },
-    ];
+];
 
 function addEmployeeToTable (firstName, lastName, id, jobTitle, annualSalary) {
     //gonna take in the employee information to add to an array of employee objects
@@ -48,11 +48,11 @@ function addEmployeeToTable (firstName, lastName, id, jobTitle, annualSalary) {
         annualSalary: annualSalary
     }
     //Not let the object get pushed if missing information
-    /*if(firstName == null || firstName === '' || lastName == null || lastName === '' || id == null || id === '' || 
+    if(firstName == null || firstName === '' || lastName == null || lastName === '' || id == null || id === '' || 
     jobTitle == null || jobTitle === '' || annualSalary == null || annualSalary === '') {
         alert('Missing Fields')
         return false;
-    }*/
+    }
     //Pushing new employeeObject to employeeObjectArray
     employeeObjectArray.push(newEmployeeObject);
     return employeeObjectArray;
@@ -90,7 +90,6 @@ function displayOnEmployeeTable() {
     let el = $('#employeeMonthlyCostTable');
     //Empty table before looping over array to re-insert employees.
     el.empty();
-    //Variable to keep my delete button id
     
     // looping through employeeObjectArray to append to DOM
     for(let employee of employeeObjectArray){
@@ -127,6 +126,7 @@ function calculateMonthlyCost() {
     monthlyCostOutput.empty();
     //append monthly cost to dom
     monthlyCostOutput.append(monthlyCost.toFixed(2));
+    //Changing the backgroundColor from green to red if we go over budget
     if(monthlyCost > maxMonthlyCost){
         $('.monthlyCostOutput').css('backgroundColor', 'red')
     }
@@ -137,8 +137,6 @@ function calculateMonthlyCost() {
 
 function onDelete() {
     let deleteStartNumber = Number($(this).parent().siblings().first().text());
-    console.log($(this).parent().siblings().first().text());
-    console.log(deleteStartNumber)
     employeeObjectArray.splice(deleteStartNumber-1, 1);
     displayOnEmployeeTable();
     calculateMonthlyCost();

@@ -5,14 +5,20 @@ header {
     font-size: 32px;
 }
 
+th {
+    background-color: lightgray;
+}
+
 .headPage {
+    text-align: center;
     background-color: gray;
-    padding: 50px 20% 25px;
+    padding: 50px 0 25px;
 }
 
 table {
     margin: 0 auto;
-    width: 60%
+    width: 60%;
+    border-collapse: collapse;
 }
 
 table, th, td {
