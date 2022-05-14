@@ -96,8 +96,8 @@ function displayOnEmployeeTable() {
         el.append(`
             <tr>
                 <td>${deleteButtonCounter}</td>
-                <td class="tableTextMargins">${employee.firstName}</td>
-                <td class="tableTextMargins">${employee.lastName}</td>
+                <td class="tableTextMargins alertName">${employee.firstName}</td>
+                <td class="tableTextMargins alertName">${employee.lastName}</td>
                 <td class="centerTextInTableColumns">${employee.idNumber}</td>
                 <td class="tableTextMargins">${employee.jobTitle}</td>
                 <td class="centerTextInTableColumns">$${employee.annualSalary}</td>
@@ -133,12 +133,35 @@ function calculateMonthlyCost() {
     else{
         $('.monthlyCostOutput').css('backgroundColor', 'green')
     }
+    projectedCostForCostOfLivingIncrease();
 }
 
 function onDelete() {
     let deleteStartNumber = Number($(this).parent().siblings().first().text());
+    alert($(this).parent().parent().children('.alertName').text() + ' is being removed');
     employeeObjectArray.splice(deleteStartNumber-1, 1);
     displayOnEmployeeTable();
     calculateMonthlyCost();
     console.log(employeeObjectArray)
+}
+
+function projectedCostForCostOfLivingIncrease() {
+    //Declaring variables for math purposes    
+    let nextYearsMonthlyCost = 0;
+    let nextYearsMaxMonthlyCost = 20000;
+    let avgCostOfLivingIncrease = 0.03;
+    //Looping through employee array to get annual salary and convert to monthly
+    for(let employee of employeeObjectArray) {
+        let annualToMonthly = employee.annualSalary / 12;
+        nextYearsMonthlyCost += annualToMonthly;
+    }
+    //declaring my output variable
+    let nextYearsProjectedCostOutput = $('#projectedCostOfLivingIncreaseOutput');
+    //
+    let nextYearsCostIncrease = nextYearsMonthlyCost * avgCostOfLivingIncrease;
+    console.log(nextYearsCostIncrease)
+    //Setting variable to add cost increase with monthly cost
+    let nextYearsCostWithIncrease = nextYearsCostIncrease + nextYearsMonthlyCost;
+    nextYearsProjectedCostOutput.empty();
+    nextYearsProjectedCostOutput.append(nextYearsCostWithIncrease.toFixed(2));
 }
