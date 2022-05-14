@@ -1,45 +1,70 @@
-body {background-color: papayawhip;}
+body {background-color: white;}
+
+header {
+    color: white;
+    font-size: 32px;
+}
+
+.headPage {
+    background-color: gray;
+    padding: 50px 20% 25px;
+}
 
 table {
     margin: 0 auto;
-    width: 80%
+    width: 60%
 }
 
 table, th, td {
-    border: 1px solid red;
+    border: 1px solid black;
 }
 
 th.rowNumber {
     width: 20px;
 }
 
-th.salaryRow {
+th.salaryRow, th.idRow {
     width: 100px;
+    text-align: center;
 }
 
-th.idRow {
-    width:100px;
+th.deleteButtonRow {
+    width: 60px;
 }
 
 
-.tableName, .inputFields, header {
-    margin-left: 10%;
+.tableName, .inputFields {
+    margin-left: 20%;
+    margin-top: 50px;
 }
 
 .monthlyCostOutput {
     margin-top: 25px;
-    margin-right: 191px;
+    margin-right: 380px;
     text-align: center;
     border: 3px solid black;
     width: 225px;
     position: relative;
     float: right;
+    background-color: green;
 }
 
 .employeeTable {
     align-items: right;
 }
 
-.inTheRed {
-    background-color: red;
+.centerTextInTableColumns {
+    text-align: center;
+}
+
+.tableTextMargins {
+    text-indent: 5px;
+}
+
+input {
+    border: 3px solid black;
+}
+
+tr:nth-child(even) {
+    background-color: lightgray;
 }

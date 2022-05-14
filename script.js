@@ -65,14 +65,17 @@ function onSubmit () {
     let employeeIdNumber = $('#employeeIdNumber').val();
     let employeeJobTitle = $('#employeeJobTitle').val();
     let employeeAnnualSalary = $('#employeeAnnualSalary').val();
+
     //adding inputs to the addEmployeeToTable function
     addEmployeeToTable(employeeFirstName, employeeLastName, employeeIdNumber, employeeJobTitle, employeeAnnualSalary);
+
     //emptying fields after button push
     $('#employeeFirstName').val('');
     $('#employeeLastName').val('');
     $('#employeeIdNumber').val('');
     $('#employeeJobTitle').val('');
     $('#employeeAnnualSalary').val('');
+
     //Display employee info to DOM
     displayOnEmployeeTable();
     // Calculate monthly cost
@@ -83,7 +86,7 @@ function onSubmit () {
 
 function displayOnEmployeeTable() {
     //setting variable for my .data() function
-let deleteButtonCounter = 1;
+    let deleteButtonCounter = 1;
     let el = $('#employeeMonthlyCostTable');
     //Empty table before looping over array to re-insert employees.
     el.empty();
@@ -94,12 +97,12 @@ let deleteButtonCounter = 1;
         el.append(`
             <tr>
                 <td>${deleteButtonCounter}</td>
-                <td>${employee.firstName}</td>
-                <td>${employee.lastName}</td>
-                <td>${employee.idNumber}</td>
-                <td>${employee.jobTitle}</td>
-                <td>$${employee.annualSalary}</td>
-                <td>
+                <td class="tableTextMargins">${employee.firstName}</td>
+                <td class="tableTextMargins">${employee.lastName}</td>
+                <td class="centerTextInTableColumns">${employee.idNumber}</td>
+                <td class="tableTextMargins">${employee.jobTitle}</td>
+                <td class="centerTextInTableColumns">$${employee.annualSalary}</td>
+                <td class="centerTextInTableColumns">
                     <button class = "deleteEmployeeFromTable">Delete</button>
                 </td>
             </tr>
@@ -125,7 +128,10 @@ function calculateMonthlyCost() {
     //append monthly cost to dom
     monthlyCostOutput.append(monthlyCost.toFixed(2));
     if(monthlyCost > maxMonthlyCost){
-        $('.monthlyCostOutput').addClass('inTheRed')
+        $('.monthlyCostOutput').css('backgroundColor', 'red')
+    }
+    else{
+        $('.monthlyCostOutput').css('backgroundColor', 'green')
     }
 }
 
