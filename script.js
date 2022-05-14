@@ -4,36 +4,37 @@ function readyNow() {
     $(document).on('click', '#submitEmployeeInfoToTable', onSubmit);
     $(document).on('click', '.deleteEmployeeFromTable', onDelete);
     displayOnEmployeeTable();
+    calculateMonthlyCost();
 }
 
 const employeeObjectArray = [
     {
     firstName: "Joey",
-    lastName: 'lastName',
+    lastName: 'Lundquist',
     idNumber: 'id',
     jobTitle: 'jobTitle',
     annualSalary: 12000
     },
     {
     firstName: "Cara",
-    lastName: 'lastName',
+    lastName: 'Lundquist',
     idNumber: 'id',
     jobTitle: 'jobTitle',
-    annualSalary: 12000
+    annualSalary: 60000
     },
     {
     firstName: "Cody",
-    lastName: 'lastName',
+    lastName: 'Oakland',
     idNumber: 'id',
     jobTitle: 'jobTitle',
-    annualSalary: 12000
+    annualSalary: 80000
     },
     {
         firstName: "Mike",
-        lastName: 'lastName',
+        lastName: 'Lundquist',
         idNumber: 'id',
         jobTitle: 'jobTitle',
-        annualSalary: 12000
+        annualSalary: 85000
     },
     ];
 
