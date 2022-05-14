@@ -18,7 +18,7 @@ function addEmployeeToTable (firstName, lastName, id, jobTitle, annualSalary) {
     }
     //Not let the object get pushed if missing information
     if(firstName == null || firstName === '' || lastName == null || lastName === '' || id == null || id === '' || 
-    jobTitle == null || jobTitle === '' || annualSalary == null || annualSalary === '' ||) {
+    jobTitle == null || jobTitle === '' || annualSalary == null || annualSalary === '') {
         return false;
     }
 
