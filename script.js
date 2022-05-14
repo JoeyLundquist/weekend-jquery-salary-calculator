@@ -3,9 +3,39 @@ $(readyNow);
 function readyNow() {
     $(document).on('click', '#submitEmployeeInfoToTable', onSubmit);
     $(document).on('click', '.deleteEmployeeFromTable', onDelete);
+    displayOnEmployeeTable();
 }
 
-const employeeObjectArray = [];
+const employeeObjectArray = [
+    {
+    firstName: "Joey",
+    lastName: 'lastName',
+    idNumber: 'id',
+    jobTitle: 'jobTitle',
+    annualSalary: 12000
+    },
+    {
+    firstName: "Cara",
+    lastName: 'lastName',
+    idNumber: 'id',
+    jobTitle: 'jobTitle',
+    annualSalary: 12000
+    },
+    {
+    firstName: "Cody",
+    lastName: 'lastName',
+    idNumber: 'id',
+    jobTitle: 'jobTitle',
+    annualSalary: 12000
+    },
+    {
+        firstName: "Mike",
+        lastName: 'lastName',
+        idNumber: 'id',
+        jobTitle: 'jobTitle',
+        annualSalary: 12000
+    },
+    ];
 
 function addEmployeeToTable (firstName, lastName, id, jobTitle, annualSalary) {
     //gonna take in the employee information to add to an array of employee objects
@@ -62,7 +92,7 @@ let deleteButtonCounter = 1;
     for(let employee of employeeObjectArray){
         el.append(`
             <tr>
-                <td>${deleteButtonCounter}.</td>
+                <td>${deleteButtonCounter}</td>
                 <td>${employee.firstName}</td>
                 <td>${employee.lastName}</td>
                 <td>${employee.idNumber}</td>
@@ -80,6 +110,7 @@ let deleteButtonCounter = 1;
 function calculateMonthlyCost() {
     // creating variable for monthly cost
     let monthlyCost = 0;
+    let maxMonthlyCost = 20000;
     
     // Loop through employeeObjectArray to grab annual Salaries
     for(let annualSalary of employeeObjectArray) {
@@ -91,13 +122,18 @@ function calculateMonthlyCost() {
     //Empty monthlyCostOutPut on DOM
     monthlyCostOutput.empty();
     //append monthly cost to dom
-    monthlyCostOutput.append(monthlyCost);
+    monthlyCostOutput.append(monthlyCost.toFixed(2));
+    if(monthlyCost > maxMonthlyCost){
+        $('.monthlyCostOutput').addClass('inTheRed')
+    }
 }
 
 function onDelete() {
-    let deleteStartNumber = $(this).parent().siblings().first();
-    console.log($(this).parent().siblings().first());
-    employeeObjectArray.splice(deleteStartNumber, 1);
+    let deleteStartNumber = Number($(this).parent().siblings().first().text());
+    console.log($(this).parent().siblings().first().text());
+    console.log(deleteStartNumber)
+    employeeObjectArray.splice(deleteStartNumber-1, 1);
     displayOnEmployeeTable();
     calculateMonthlyCost();
+    console.log(employeeObjectArray)
 }
