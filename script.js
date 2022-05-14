@@ -78,5 +78,9 @@ function calculateMonthlyCost() {
         let annualToMonthly = annualSalary.annualSalary / 12;
         monthlyCost += annualToMonthly;
     }
-    console.log(monthlyCost);
+    let monthlyCostOutput = $('#employeeMonthlyCostOutput');
+    //Empty monthlyCostOutPut on DOM
+    monthlyCostOutput.empty();
+    //append monthly cost to dom
+    monthlyCostOutput.append(monthlyCost);
 }
