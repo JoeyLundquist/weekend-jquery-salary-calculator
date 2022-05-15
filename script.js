@@ -86,7 +86,7 @@ function onSubmit () {
 
 function displayOnEmployeeTable() {
     //setting variable for my .data() function
-    let deleteButtonCounter = 1;
+    let rowCounter = 1;
     let el = $('#employeeMonthlyCostTable');
     //Empty table before looping over array to re-insert employees.
     el.empty();
@@ -95,10 +95,10 @@ function displayOnEmployeeTable() {
     for(let employee of employeeObjectArray){
         el.append(`
             <tr>
-                <td>${deleteButtonCounter}</td>
+                <td class="rowCounter">${rowCounter}.</td>
                 <td class="tableTextMargins alertName">${employee.firstName}</td>
                 <td class="tableTextMargins alertName">${employee.lastName}</td>
-                <td class="centerTextInTableColumns">${employee.idNumber}</td>
+                <td id="rowId" class="centerTextInTableColumns">${employee.idNumber}</td>
                 <td class="tableTextMargins">${employee.jobTitle}</td>
                 <td class="centerTextInTableColumns">$${employee.annualSalary}</td>
                 <td class="centerTextInTableColumns">
@@ -106,7 +106,7 @@ function displayOnEmployeeTable() {
                 </td>
             </tr>
             <div class="deleteCounter></div>"`);    
-        deleteButtonCounter ++;
+        rowCounter ++;
     }
 }
 
@@ -128,18 +128,40 @@ function calculateMonthlyCost() {
     monthlyCostOutput.append(monthlyCost.toFixed(2));
     //Changing the backgroundColor from green to red if we go over budget
     if(monthlyCost > maxMonthlyCost){
-        $('.monthlyCostOutput').css('backgroundColor', 'red')
+        $('#monthlyCostBox').css('backgroundColor', 'red')
     }
     else{
-        $('.monthlyCostOutput').css('backgroundColor', 'green')
+        $('#monthlyCostBox').css('backgroundColor', 'green')
     }
+
+    let remainingBudget = maxMonthlyCost - monthlyCost;
+    let remainingBudgetOutput = $('#reamingMonthlyBudgetOutput');
+    remainingBudgetOutput.empty();
+    remainingBudgetOutput.append(remainingBudget.toFixed(2));
+    if(remainingBudget < 0){
+        $('#remainingBudgetBox').css('backgroundColor', 'red')
+    }
+    else {
+        $('#remainingBudgetBox').css('backgroundColor', 'green')
+    }
+
     projectedCostForCostOfLivingIncrease();
 }
 
 function onDelete() {
-    let deleteStartNumber = Number($(this).parent().siblings().first().text());
     alert($(this).parent().parent().children('.alertName').text() + ' is being removed');
-    employeeObjectArray.splice(deleteStartNumber-1, 1);
+    
+    //This is how you can find the ID number of an employee
+    console.log($(this).parent().parent().children('#rowId').text());
+    //loop through array of Employees to match the id then retrieve the index number for .splice function
+    for(let i=0; i <= employeeObjectArray.length-1; i++){
+        if($(this).parent().parent().children('#rowId').text() === employeeObjectArray[i].idNumber){
+            console.log(i);
+            employeeObjectArray.splice(i, 1);
+        }
+    }
+    
+    
     displayOnEmployeeTable();
     calculateMonthlyCost();
     console.log(employeeObjectArray)
@@ -164,4 +186,10 @@ function projectedCostForCostOfLivingIncrease() {
     let nextYearsCostWithIncrease = nextYearsCostIncrease + nextYearsMonthlyCost;
     nextYearsProjectedCostOutput.empty();
     nextYearsProjectedCostOutput.append(nextYearsCostWithIncrease.toFixed(2));
+    if(nextYearsCostWithIncrease > nextYearsMaxMonthlyCost){
+        $('#costOfLivingIncreaseBox').css('backgroundColor', 'red')
+    }
+    else {
+        $('#costOfLivingIncreaseBox').css('background', 'green')
+    }
 }

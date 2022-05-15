@@ -34,6 +34,10 @@ th.salaryRow, th.idRow {
     text-align: center;
 }
 
+td.rowCount {
+    text-align: center;
+}
+
 th.deleteButtonRow {
     width: 60px;
 }
@@ -44,15 +48,20 @@ th.deleteButtonRow {
     margin-top: 50px;
 }
 
+.outputBoxes {
+    text-align: center;
+}
+
 .monthlyCostOutput {
-    margin-top: 25px;
-    margin-right: 380px;
+    margin: 25px 50px; 
     text-align: center;
     border: 3px solid black;
     width: 225px;
+    height: 115px;
     position: relative;
-    float: right;
+    /*float: right; */
     background-color: green;
+    display: inline-block;
 }
 
 .employeeTable {
@@ -73,4 +82,8 @@ input {
 
 tr:nth-child(even) {
     background-color: lightgray;
+}
+
+.rightFloat {
+    margin-right: 30%; 
 }
