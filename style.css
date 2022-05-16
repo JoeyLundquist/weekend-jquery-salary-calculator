@@ -87,3 +87,9 @@ tr:nth-child(even) {
 .rightFloat {
     margin-right: 30%; 
 }
+
+.deleteEmployeeFromTable:hover {
+    background-color: lightgray;
+    cursor:pointer;
+}
+
