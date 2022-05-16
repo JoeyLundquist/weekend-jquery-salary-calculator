@@ -78,8 +78,10 @@ th.deleteButtonRow {
     text-indent: 5px;
 }
 
-input {
+input, #submitEmployeeInfoToTable{
     border: 3px solid black;
+    margin: 10px;
+    padding: 6px;
 }
 
 tr:nth-child(even) {
