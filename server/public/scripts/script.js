@@ -38,28 +38,31 @@ function readyNow() {
 //     },
 // ];
 
-function addEmployeeToTable (firstName, lastName, id, jobTitle, annualSalary) {
-    //gonna take in the employee information to add to an array of employee objects
-    const newEmployeeObject = {
-        firstName: firstName,
-        lastName: lastName,
-        idNumber: id,
-        jobTitle: jobTitle,
-        annualSalary: annualSalary
-    }
-    //Not let the object get pushed if missing information
-    if(firstName == null || firstName === '' || lastName == null || lastName === '' || id == null || id === '' || 
-    jobTitle == null || jobTitle === '' || annualSalary == null || annualSalary === '') {
-        alert('Missing Fields')
-        return false;
-    }
-    //Pushing new employeeObject to employeeObjectArray
-    // employeeObjectArray.push(newEmployeeObject);
-    // return employeeObjectArray;
+// function addEmployeeToTable (firstName, lastName, id, jobTitle, annualSalary) {
+//     //gonna take in the employee information to add to an array of employee objects
+//     const newEmployeeObject = {
+//         firstName: firstName,
+//         lastName: lastName,
+//         idNumber: id,
+//         jobTitle: jobTitle,
+//         annualSalary: annualSalary
+//     }
+//     //Not let the object get pushed if missing information
+//     if(firstName == null || firstName === '' || lastName == null || lastName === '' || id == null || id === '' || 
+//     jobTitle == null || jobTitle === '' || annualSalary == null || annualSalary === '') {
+//         alert('Missing Fields')
+//         return false;
+//     }
+//     //Pushing new employeeObject to employeeObjectArray
+//     // employeeObjectArray.push(newEmployeeObject);
+//     // return employeeObjectArray;
     
 
-}
+// }
 
+
+console.log('To stop the comment from being sucked up')
+//GET REQUEST
 function getEmployees() {
 
 
@@ -78,14 +81,28 @@ function getEmployees() {
 
 function onSubmit () {
     //Setting getter values to variable
-    let employeeFirstName = $('#employeeFirstName').val();
-    let employeeLastName = $('#employeeLastName').val();
-    let employeeIdNumber = $('#employeeIdNumber').val();
-    let employeeJobTitle = $('#employeeJobTitle').val();
-    let employeeAnnualSalary = $('#employeeAnnualSalary').val();
-
+    let  employeeToSend = {
+        firstName: $('#employeeFirstName').val(),
+        lastName: $('#employeeLastName').val(),
+        employeeId: $('#employeeIdNumber').val(),
+        jobTitle: $('#employeeJobTitle').val(),
+        annualSalary: $('#employeeAnnualSalary').val()
+    }
     //adding inputs to the addEmployeeToTable function
-    addEmployeeToTable(employeeFirstName, employeeLastName, employeeIdNumber, employeeJobTitle, employeeAnnualSalary);
+    // addEmployeeToTable(employeeFirstName, employeeLastName, employeeIdNumber, employeeJobTitle, employeeAnnualSalary);
+
+
+    $.ajax({
+        url:'employees', 
+        method: 'POST',
+        data: employeeToSend
+    })
+    .then((response) => {
+        getEmployees();
+    })
+    .catch((err) => {
+        console.log('POST failed', err)
+    })
 
     //emptying fields after button push
     $('#employeeFirstName').val('');
@@ -95,9 +112,9 @@ function onSubmit () {
     $('#employeeAnnualSalary').val('');
 
     //Display employee info to DOM
-    displayOnEmployeeTable();
+    // displayOnEmployeeTable();
     // Calculate monthly cost
-    calculateMonthlyCost();
+    // calculateMonthlyCost();
 
 }
 

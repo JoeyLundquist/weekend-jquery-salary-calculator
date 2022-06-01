@@ -11,7 +11,7 @@ CREATE TABLE "employees" (
 
 INSERT INTO "employees"
 ("firstName", "lastName", "employeeId", "jobTitle", "annualSalary")
-VALUEs
+VALUES
 ('Medea', 'Aigle', '123', 'Window Cleaner', '12000'),
 ('Althea', 'Pyrrhus', '456', 'Sales Associate', '35000'),
 ('Brontes', 'Orestes', '789', 'General Manager', '56000'),

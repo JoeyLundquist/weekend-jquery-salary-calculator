@@ -5,6 +5,7 @@ const app = express();
 const employeeRouter = require('./routes/employee.router');
 
 const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}))
 
 const PORT = process.env.PORT || 5000;
 

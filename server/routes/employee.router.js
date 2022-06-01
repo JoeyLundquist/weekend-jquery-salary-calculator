@@ -24,5 +24,40 @@ employeeRouter.get('/', (req, res) => {
 })
 
 
+employeeRouter.post('/', (req, res) => {
+    console.log('In POST')
+    let employee = req.body
+    console.log(employee)
+
+    const sqlQuery = `
+    INSERT INTO "employees"
+    ("firstName", "lastName", "employeeId", "jobTitle", "annualSalary")
+    VALUES
+    ($1, $2, $3, $4, $5);
+    `
+
+    const sqlParams = [
+        employee.firstName,
+        employee.lastName,
+        Number(employee.employeeId),
+        employee.jobTitle,
+        Number(employee.annualSalary)
+    ]
+    console.log(sqlParams)
+
+
+    pool.query(sqlQuery, sqlParams)
+        .then((dbRes) => {
+            console.log('POST success')
+            res.sendStatus(201)
+        })
+        .catch((err) => {
+            console.log('POST FAILED')
+            res.sendStatus(500);
+        })
+
+})
+
+
 
 module.exports = employeeRouter;
