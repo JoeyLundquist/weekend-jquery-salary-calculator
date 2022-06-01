@@ -6,59 +6,7 @@ function readyNow() {
     // calculateMonthlyCost();
     getEmployees();
 }
-//baseline array for testing
-// const employeeObjectArray = [
-//     {
-//         firstName: "Medea",
-//         lastName: 'Aigle',
-//         idNumber: '123',
-//         jobTitle: 'Window Cleaner',
-//         annualSalary: '12000'
-//     },
-//     {
-//         firstName: "Althea",
-//         lastName: 'Pyrrhus',
-//         idNumber: '456',
-//         jobTitle: 'Sales Associate',
-//         annualSalary: '35000'
-//     },
-//     {
-//         firstName: "Brontes",
-//         lastName: 'Orestes',
-//         idNumber: '789',
-//         jobTitle: 'General Manager',
-//         annualSalary: '56000'
-//     },
-//     {
-//         firstName: "Anthea",
-//         lastName: 'Selena',
-//         idNumber: '1011',
-//         jobTitle: 'CFO',
-//         annualSalary: '85000'
-//     },
-// ];
 
-// function addEmployeeToTable (firstName, lastName, id, jobTitle, annualSalary) {
-//     //gonna take in the employee information to add to an array of employee objects
-//     const newEmployeeObject = {
-//         firstName: firstName,
-//         lastName: lastName,
-//         idNumber: id,
-//         jobTitle: jobTitle,
-//         annualSalary: annualSalary
-//     }
-//     //Not let the object get pushed if missing information
-//     if(firstName == null || firstName === '' || lastName == null || lastName === '' || id == null || id === '' || 
-//     jobTitle == null || jobTitle === '' || annualSalary == null || annualSalary === '') {
-//         alert('Missing Fields')
-//         return false;
-//     }
-//     //Pushing new employeeObject to employeeObjectArray
-//     // employeeObjectArray.push(newEmployeeObject);
-//     // return employeeObjectArray;
-    
-
-// }
 
 
 console.log('To stop the comment from being sucked up')
@@ -133,7 +81,7 @@ function displayOnEmployeeTable(array) {
                 <td class="rowCounter">${rowCounter}.</td>
                 <td class="tableTextMargins alertName">${employee.firstName}</td>
                 <td class="tableTextMargins alertName">${employee.lastName}</td>
-                <td id="rowId" class="centerTextInTableColumns" data-employee-id="${employee.employeeId}">${employee.employeeId}</td>
+                <td id="rowId" class="centerTextInTableColumns" data-employee-id="${employee.id}">${employee.employeeId}</td>
                 <td class="tableTextMargins">${employee.jobTitle}</td>
                 <td class="centerTextInTableColumns">$${employee.annualSalary}</td>
                 <td class="centerTextInTableColumns">
@@ -187,26 +135,23 @@ function calculateMonthlyCost(array) {
 function onDelete() {
     //alert($(this).parent().parent().children('.alertName').text() + ' is being removed');
     
-const employeeIdNumber = $(this).parent().parent().children('#rowId').data('employee-id');
-let matchingEmployee;
+const employeeIdNumber = {
+    employeeId: $(this).parent().parent().children('#rowId').data('employee-id')
+}
 
-    //This is how you can find the ID number of an employee
-    console.log($(this).parent().parent().children('#rowId').data('employee-id'));
-    //loop through array of Employees to match the id then retrieve the index number for .splice function
-    for(let employee of employeeObjectArray){
-        if(Number(employeeIdNumber) === employee.idNumber){
-            matchingEmployee = employee;
-            console.log(matchingEmployee);
-            employeeObjectArray.splice(employee.index(), 1);
-        }
-    }
+    $.ajax({
+        url: 'employees',
+        method: 'DELETE',
+        data: employeeIdNumber
+    })
+    .then((response) => {
+        console.log('DELETE was success')
+        getEmployees()
+    })
+    .catch((err) => {
+        console.log('DELETE fail', err);
+    });
 
-    console.log()
-    
-    
-    displayOnEmployeeTable();
-    calculateMonthlyCost();
-    console.log(employeeObjectArray)
 }
 
 function projectedCostForCostOfLivingIncrease(array) {

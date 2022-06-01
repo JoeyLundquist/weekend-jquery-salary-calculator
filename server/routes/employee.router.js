@@ -58,6 +58,29 @@ employeeRouter.post('/', (req, res) => {
 
 })
 
+employeeRouter.delete('/', (req, res) => {
+    const employee = req.body;
+
+    const sqlQuery = `
+        DELETE FROM employees
+        WHERE id = $1;
+    `
+
+    const sqlParams = [
+        Number(employee.employeeId)
+    ]
+
+    pool.query(sqlQuery, sqlParams)
+        .then((dbRes) => {
+            console.log('DELETE success')
+            res.sendStatus(201)
+        })
+        .catch((err) => {
+            console.log('DELETE failed', err)
+            res.sendStatus(500)
+        })
+
+})
 
 
 module.exports = employeeRouter;
