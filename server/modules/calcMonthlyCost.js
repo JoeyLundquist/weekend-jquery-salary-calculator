@@ -36,7 +36,7 @@ function calculateMonthlyCost() {
     projectedCostForCostOfLivingIncrease();
 }
 
-function projectedCostForCostOfLivingIncrease() {
+function projectedCostForCostOfLivingIncrease(array) {
     //Declaring variables for math purposes    
     let nextYearsMonthlyCost = 0;
     let nextYearsMaxMonthlyCost = 20000;

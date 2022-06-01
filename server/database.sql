@@ -1,3 +1,5 @@
+--Data base named employee_salary_calculator
+
 --To Create the table
 
 CREATE TABLE "employees" (
@@ -8,7 +10,7 @@ CREATE TABLE "employees" (
 "jobTitle" VARCHAR(120) NOT NULL,
 "annualSalary" INT NOT NULL
 );
-
+-- To insert tst data
 INSERT INTO "employees"
 ("firstName", "lastName", "employeeId", "jobTitle", "annualSalary")
 VALUES
